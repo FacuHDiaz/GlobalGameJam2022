@@ -3,8 +3,8 @@
 import arcade
 from arcade.color import TITANIUM_YELLOW
 
-ANCHO_PANTALLA = 800
-ALTO_PANTALLA = 600
+ANCHO_PANTALLA = 1920
+ALTO_PANTALLA = 700
 TITULO_PANTALLA= "primer intento" 
 
 ESCALA_PERSONAJE = 1
@@ -75,7 +75,9 @@ class MyGame(arcade.Window):
         self.down_pressed = False
         self.shoot_pressed = False
         self.jump_needs_reset = False
-
+        
+        #direccion hacia donde mira
+        self.padonde_miro = None
         #variables del personaje
         self.player_sprite = None
         #motor de fisicas 
@@ -89,7 +91,7 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """Set up the game here. Call this function to restart the game."""
-        map_name = "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/mapas/Mapa_nivel_1..json"
+        map_name = "pimer_proyecto/recursos/mapas/Mapa_nivel_1..json"
 
         layer_options = {
             "piso": {
@@ -102,7 +104,7 @@ class MyGame(arcade.Window):
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
 
         #posicion y sprite de mi personaje
-        image_source = "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/imagenes/zombie.png"
+        image_source = "pimer_proyecto/recursos/imagenes/zombie.png"
         self.player_sprite = arcade.Sprite(image_source, ESCALA_PERSONAJE)
         self.player_sprite.center_x = 128
         self.player_sprite.center_y = 144
@@ -112,8 +114,8 @@ class MyGame(arcade.Window):
             self.player_sprite, gravity_constant=GRAVEDAD, walls=self.scene["piso"])
 
         # mecanicas del disparo
-        #self.can_shoot = True
-        #self.shoot_timer = 0
+        self.can_shoot = True
+        self.shoot_timer = 0
 
         if self.tile_map.background_color:
             arcade.set_background_color(self.tile_map.background_color)
@@ -133,11 +135,13 @@ class MyGame(arcade.Window):
                 self.player_sprite.change_y = VELOCIDAD_SALTO_JUGADOR
         elif key == arcade.key.LEFT or key == arcade.key.A:
             self.player_sprite.change_x = -VELOCIDAD_MOVIMIENTO_JUGADOR
+            self.padonde_miro = MIRAR_IZQUIERDA
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = VELOCIDAD_MOVIMIENTO_JUGADOR
+            self.padonde_miro = MIRAR_DERECHA
         
-        #if key == arcade.key.SPACE:
-        #    self.shoot_pressed = True
+        if key == arcade.key.SPACE:
+            self.shoot_pressed = True
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key."""
@@ -147,8 +151,8 @@ class MyGame(arcade.Window):
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = 0
 
-        #if key == arcade.key.SPACE:
-        #    self.shoot_pressed = False
+        if key == arcade.key.SPACE:
+            self.shoot_pressed = False
 
     def on_update(self, delta_time):
         """Movement and game logic"""
@@ -156,33 +160,37 @@ class MyGame(arcade.Window):
         # Move the player with the physics engine
         self.physics_engine.update()
 
-
+        if  self.player_sprite.change_x  < 0 and self.padonde_miro == MIRAR_DERECHA:
+            self.padonde_miro = MIRAR_IZQUIERDA
+        elif  self.player_sprite.change_x  > 0 and self.padonde_miro == MIRAR_IZQUIERDA:
+            self.padonde_miro = MIRAR_DERECHA
+        
         #mecanicas del disparo
         #
-        #if self.can_shoot:
-        #     if self.shoot_pressed:
-        #        bullet = arcade.Sprite(
-        #            ":resources:images/space_shooter/laserBlue01.png",
-        #            ESCALA_SPRITE_DISPARO,
-        #        )
-        #        
-        #        #HAY QUE CAMBIAR ESTO CABROON
-        #        if self.player_sprite.facing_direction == MIRAR_DERECHA:
-        #            bullet.change_x = VELOCIDAD_BALA
-        #        else:
-        #            bullet.change_x = -VELOCIDAD_BALA
-#
-        #        bullet.center_x = self.player_sprite.center_x
-        #        bullet.center_y = self.player_sprite.center_y
-        #        #HAY QUE CAMBIAR ESTO CABRON
-        #        #self.scene.add_sprite("BALAS", bullet)
-#
-        #        self.can_shoot = False
-        #else:
-        #    self.shoot_timer += 1
-        #    if self.shoot_timer == VELOCIDAD_DISPARO:
-        #        self.can_shoot = True
-        #        self.shoot_timer = 0
+        if self.can_shoot:
+             if self.shoot_pressed:
+                bullet = arcade.Sprite(
+                    ":resources:images/space_shooter/laserBlue01.png",
+                    ESCALA_SPRITE_DISPARO,
+                )
+                
+                #HAY QUE CAMBIAR ESTO CABROON
+                if self.padonde_miro == MIRAR_DERECHA:
+                    bullet.change_x = VELOCIDAD_BALA
+                else:
+                    bullet.change_x = -VELOCIDAD_BALA
+
+                bullet.center_x = self.player_sprite.center_x
+                bullet.center_y = self.player_sprite.center_y
+                #HAY QUE CAMBIAR ESTO CABRON
+                self.scene.add_sprite("BALAS", bullet)
+
+                self.can_shoot = False
+        else:
+            self.shoot_timer += 1
+            if self.shoot_timer == VELOCIDAD_DISPARO:
+                self.can_shoot = True
+                self.shoot_timer = 0
 
 
 def main():
