@@ -7,14 +7,26 @@
          "height":20,
          "id":1,
          "name":"piso",
+         "offsetx":0,
+         "offsety":1.97368421052636,
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":30,
          "x":0,
          "y":0
+        }, 
+        {
+         "id":2,
+         "image":"",
+         "name":"fondo",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":2,
+ "nextlayerid":3,
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
@@ -24,6 +36,10 @@
         {
          "firstgid":1,
          "source":"tmw_desert_spacing.json"
+        }, 
+        {
+         "firstgid":49,
+         "source":"D:\/examples\/perspective_walls.tsx"
         }],
  "tilewidth":32,
  "type":"map",

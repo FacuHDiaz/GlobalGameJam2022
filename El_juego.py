@@ -3,7 +3,7 @@
 import arcade
 from arcade.color import TITANIUM_YELLOW
 
-ANCHO_PANTALLA = 1920
+ANCHO_PANTALLA = 800
 ALTO_PANTALLA = 700
 TITULO_PANTALLA= "primer intento" 
 
@@ -25,6 +25,12 @@ VELOCIDAD_BALA = 12
 #CONSTANTES USADAS PARA SEGUIR SI EL JUGADOR ESTA MIRANDO A LA IZQUIERA O LA DERECHA
 MIRAR_DERECHA = 0
 MIRAR_IZQUIERDA = 1
+
+#NOMBRES DE LAS CAPAS DE TILED
+CAPA_NOMBRE_FONDO = "Fondo"
+CAPA_NOMBRE_OBJETOS = "Capa de Objetos 1"
+CAPA_NOMBRE_PISO = "Suelo"
+
 
 #class entidad(arcade.Sprite):
 #    def __init__(self):
@@ -91,12 +97,12 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """Set up the game here. Call this function to restart the game."""
-        map_name = "pimer_proyecto/recursos/mapas/Mapa_nivel_1..json"
+        map_name = "pimer_proyecto/recursos/mapas/llama_finaltmx.tmx"
 
         layer_options = {
-            "piso": {
+            CAPA_NOMBRE_PISO: {
                 "use_spatial_hash": True,
-            }
+            },
         }
 
         self.tile_map = arcade.load_tilemap(map_name, ESCALA_LOZA, layer_options)
@@ -104,14 +110,14 @@ class MyGame(arcade.Window):
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
 
         #posicion y sprite de mi personaje
-        image_source = "pimer_proyecto/recursos/imagenes/zombie.png"
+        image_source = "pimer_proyecto/recursos/imagenes/llama/Llama quieta.png"
         self.player_sprite = arcade.Sprite(image_source, ESCALA_PERSONAJE)
         self.player_sprite.center_x = 128
         self.player_sprite.center_y = 144
         self.scene.add_sprite("Player", self.player_sprite)
 
         self.physics_engine = arcade.PhysicsEnginePlatformer(
-            self.player_sprite, gravity_constant=GRAVEDAD, walls=self.scene["piso"])
+            self.player_sprite, gravity_constant=GRAVEDAD, walls=self.scene[CAPA_NOMBRE_PISO])
 
         # mecanicas del disparo
         self.can_shoot = True

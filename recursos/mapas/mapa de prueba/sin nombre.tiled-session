@@ -1,9 +1,14 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "Mapa_nivel_1.json",
     "expandedProjectPaths": [
         ".",
         "D:/Descargas/Mapsa"
     ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
         "D:/examples/perspective_walls.tsx": {
             "scaleInDock": 1
@@ -12,7 +17,7 @@
             "scale": 0.5066666666666666,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 207.23684210526318,
+                "x": 809.2105263157896,
                 "y": 359.2105263157896
             }
         },
@@ -29,8 +34,13 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/mapas",
+    "last.exportedFilePath": "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/mapas",
+    "last.externalTilesetPath": "C:/Users/cpu/Desktop",
+    "last.imagePath": "D:/examples",
+    "map.height": 20,
+    "map.lastUsedExportFilter": "Archivos de mapa JSON (*.json)",
     "map.lastUsedFormat": "json",
+    "map.width": 30,
     "openFiles": [
         "Mapa_nivel_1.json",
         "tmw_desert_spacing.json",
@@ -38,8 +48,10 @@
     ],
     "project": "sin nombre.tiled-project",
     "recentFiles": [
-        "Mapa_nivel_1.json",
+        "Mapa_nivel_1..json",
         "tmw_desert_spacing.json",
-        "Mapa_nivel_1..json"
-    ]
+        "Mapa_nivel_1.json"
+    ],
+    "tileset.lastUsedFilter": "Todos los archivos (*)",
+    "tileset.lastUsedFormat": "json"
 }
