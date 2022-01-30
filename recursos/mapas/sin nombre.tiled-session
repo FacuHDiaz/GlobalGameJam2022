@@ -1,5 +1,5 @@
 {
-    "activeFile": "mapa de prueba/Mapa_nivel_1.json",
+    "activeFile": "mapas/llama_finaltmx.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
@@ -13,6 +13,17 @@
             }
         },
         "mapa de prueba/tmw_desert_spacing.json": {
+            "scaleInDock": 1
+        },
+        "mapa_de_prueba/Mapa_nivel_1.json": {
+            "scale": 0.76,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.26315789473693,
+                "y": 321.0526315789474
+            }
+        },
+        "mapa_de_prueba/tmw_desert_spacing.json": {
             "scaleInDock": 1
         },
         "mapas/asfalto.tsx": {
@@ -38,10 +49,10 @@
         },
         "mapas/llama_finaltmx.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 305,
-                "y": 410
+                "x": 327,
+                "y": 489
             }
         },
         "mapas/tierra 2l.tsx": {
@@ -56,12 +67,12 @@
     },
     "last.objectTemplatePath": "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/mapas/mapa de prueba",
     "openFiles": [
-        "mapas/llama_finaltmx.tmx",
-        "mapa de prueba/Mapa_nivel_1.json"
+        "mapas/llama_finaltmx.tmx"
     ],
     "project": "",
     "recentFiles": [
         "mapas/llama_finaltmx.tmx",
+        "mapa_de_prueba/Mapa_nivel_1.json",
         "mapa de prueba/Mapa_nivel_1.json"
     ]
 }

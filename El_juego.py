@@ -1,9 +1,9 @@
 #HAY QUE CAMBIAR COSAS CABRON DENTRO DEL UPDATE
-import math
+#import math
 import arcade
-import os
+#import os
 
-from arcade.texture import load_texture   
+#from arcade.texture import load_texture   
 
 ANCHO_PANTALLA = 800
 ALTO_PANTALLA = 600
@@ -36,106 +36,106 @@ MIRAR_IZQUIERDA = 1
 #NOMBRES DE LAS CAPAS DE TILED
 CAPA_NOMBRE_FONDO = "Fondo"
 CAPA_NOMBRE_OBJETOS = "Cajas"
-CAPA_NOMBRE_PISO = "Suelo"
-CAPA_NOMBRE_NO_TOCAS = "Cactus"
-CAPA_NOMBRE_LLAMA = "Llama"
-CAPA_NOMBRE_ENEMIGO ="Enemigo"
+CAPA_NOMBRE_PISO = "piso"
+#CAPA_NOMBRE_NO_TOCAS = "Cactus"
+#CAPA_NOMBRE_LLAMA = "Llama"
+#CAPA_NOMBRE_ENEMIGO ="Enemigo"
 
-def load_texture_pair(filename):
-    return [arcade.load_texture(filename),arcade.load_texture(filename,flipped_horizontally=True),]
+#def load_texture_pair(filename):
+#    return [arcade.load_texture(filename),arcade.load_texture(filename,flipped_horizontally=True),]
+#
+#
+#class entidad(arcade.Sprite):
+#    def __init__(self):
+#        
+#        #config. clase padre
+#        super.__init__(self, name_folder, name_file)
+#
+#        #direccion a la que mira por defecto
+#        self.direccion_mira_personaje = MIRAR_DERECHA
+#
+#         # se utiliza para cambiar entre sequencias de imagenes
+#        self.cur_texture = 0
+#        self.scale = ESCALA_PERSONAJE
+#
+#        #seguimiento de que hace
+#        self.saltando = False
+#
+#        #cargar las texturas
+#        main_path = f"pimer_proyecto/recursos/imagenes/{name_folder}/{name_file}"
+#
+#        self.idle_texture_pair = load_texture_pair(f"{name_file}_idle.png")
+#
+#        # Load textures for walking
+#        self.walk_textures = []
+#        for i in range(3):
+#            texture = load_texture_pair(f"{main_path}_Mov_{i}.png")
+#            self.walk_textures.append(texture)
+#
+#        #conf inicar texttura
+#        self.texture = self.idle_texture_pair[0]
+#
+#        self.hit_box = self.texture.hit_box_points
+#
+#
+#
+#class llama(entidad):
+#
+#    def __init__(self): 
+#
+#        # Conf clase padre
+#        super().__init__("Llama_Blanca", "Llama_Blanca")
+#
+#        # Track our state
+#        self.jumping = False
+#        self.climbing = False
+#        self.is_on_ladder = False
+#
+#    def update_animation(self, delta_time: float = 1 / 60):
+#
+#        if self.change_x < 0 and self.character_face_direction == MIRAR_DERECHA:
+#            self.character_face_direction = MIRAR_IZQUIERDA
+#        elif self.change_x > 0 and self.character_face_direction == MIRAR_IZQUIERDA:
+#            self.character_face_direction = MIRAR_DERECHA
+#
+#        # Idle animation
+#        if self.change_x == 0:
+#            self.texture = self.idle_texture_pair[self.character_face_direction]
+#            return
+#
+#        # Walking animation
+#        self.cur_texture += 1
+#        if self.cur_texture > 7:
+#            self.cur_texture = 0
+#        self.texture = self.walk_textures[self.cur_texture][
+#            self.character_face_direction
+#        ]
+#
+#class Enemy(entidad):
+#    def __init__(self, name_folder, name_file):
+#
+#        # Setup parent class
+#        super().__init__(name_folder, name_file)
+#
+#class Enemy(entidad):
+#    def __init__(self, name_folder, name_file):
+#
+#        # Setup parent class
+#        super().__init__(name_folder, name_file)
+#
+#
+#class SoldadoEnemy(Enemy):
+#    def __init__(self):
+#
+#        # Set up parent class
+#        super().__init__("soldado", "soldado")
 
 
-class entidad(arcade.Sprite):
-    def __init__(self):
-        
-        #config. clase padre
-        super.__init__(self, name_folder, name_file)
-
-        #direccion a la que mira por defecto
-        self.direccion_mira_personaje = MIRAR_DERECHA
-
-         # se utiliza para cambiar entre sequencias de imagenes
-        self.cur_texture = 0
-        self.scale = ESCALA_PERSONAJE
-
-        #seguimiento de que hace
-        self.saltando = False
-
-        #cargar las texturas
-        main_path = f"pimer_proyecto/recursos/imagenes/{name_folder}/{name_file}"
-
-        self.idle_texture_pair = load_texture_pair(f"{name_file}_idle.png")
-
-        # Load textures for walking
-        self.walk_textures = []
-        for i in range(3):
-            texture = load_texture_pair(f"{main_path}_Mov_{i}.png")
-            self.walk_textures.append(texture)
-
-        #conf inicar texttura
-        self.texture = self.idle_texture_pair[0]
-
-        self.hit_box = self.texture.hit_box_points
-
-
-
-class llama(entidad):
-
-    def __init__(self): 
-
-        # Conf clase padre
-        super().__init__("Llama_Blanca", "Llama_Blanca")
-
-        # Track our state
-        self.jumping = False
-        self.climbing = False
-        self.is_on_ladder = False
-
-    def update_animation(self, delta_time: float = 1 / 60):
-
-        if self.change_x < 0 and self.character_face_direction == MIRAR_DERECHA:
-            self.character_face_direction = MIRAR_IZQUIERDA
-        elif self.change_x > 0 and self.character_face_direction == MIRAR_IZQUIERDA:
-            self.character_face_direction = MIRAR_DERECHA
-
-        # Idle animation
-        if self.change_x == 0:
-            self.texture = self.idle_texture_pair[self.character_face_direction]
-            return
-
-        # Walking animation
-        self.cur_texture += 1
-        if self.cur_texture > 7:
-            self.cur_texture = 0
-        self.texture = self.walk_textures[self.cur_texture][
-            self.character_face_direction
-        ]
-
-class Enemy(entidad):
-    def __init__(self, name_folder, name_file):
-
-        # Setup parent class
-        super().__init__(name_folder, name_file)
-
-class Enemy(entidad):
-    def __init__(self, name_folder, name_file):
-
-        # Setup parent class
-        super().__init__(name_folder, name_file)
-
-
-class SoldadoEnemy(Enemy):
-    def __init__(self):
-
-        # Set up parent class
-        super().__init__("soldado", "soldado")
-
-
-class LlamaEnemy(Enemy):
-    def __init__(self):
-
-        # Set up parent class
-        super().__init__("llama_marron", "Llama_marorn")
+#class LlamaEnemy(Enemy):
+#    def __init__(self):
+#
+#        # Set up parent class
+#        super().__init__("llama_marron", "Llama_marorn")
 
 
 class MyGame(arcade.Window):
@@ -148,8 +148,8 @@ class MyGame(arcade.Window):
         # Call the parent class and set up the window
         super().__init__(ANCHO_PANTALLA, ALTO_PANTALLA, TITULO_PANTALLA)
         
-        file_path = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(file_path)
+        #file_path = os.path.dirname(os.path.abspath(__file__))
+        #os.chdir(file_path)
 
 
         #variables del mapa
@@ -173,11 +173,11 @@ class MyGame(arcade.Window):
         self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
 
         ##direccion hacia donde mira
-        #self.padonde_miro = None
+        self.padonde_miro = None
         ##variables del personaje
-        #self.player_sprite = None
+        self.player_sprite = None
         ##motor de fisicas 
-        #self.physics_engine = None
+        self.physics_engine = None
 
         # mecanicas del disparo
         self.can_shoot = False
@@ -186,7 +186,7 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """Set up the game here. Call this function to restart the game."""
-        map_name = "pimer_proyecto/recursos/mapas/mapas/llama_finaltmx.tmx"
+        map_name = 'C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/mapas/mapa_de_prueba/Mapa_nivel_1.json'
 
         layer_options = {
             CAPA_NOMBRE_PISO: {
@@ -195,9 +195,9 @@ class MyGame(arcade.Window):
             CAPA_NOMBRE_OBJETOS: {
                 "use_spatial_hash": True,
             },
-            CAPA_NOMBRE_NO_TOCAS: {
-                "use_spatial_hash": True
-            }
+            #CAPA_NOMBRE_NO_TOCAS: {
+            #    "use_spatial_hash": True
+            #}
         }
 
         self.tile_map = arcade.load_tilemap(map_name, ESCALA_LOZA, layer_options)
@@ -205,41 +205,41 @@ class MyGame(arcade.Window):
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
 
         #posicion y sprite de mi personaje
-        #image_source = "pimer_proyecto/recursos/imagenes/llama/Llama quieta.png"
-        #self.player_sprite = arcade.Sprite(image_source, ESCALA_PERSONAJE)
-        self.player_sprite = llama()
+        image_source = "C:/Users/cpu/Desktop/Mi_proyecto_pyarcade/pimer_proyecto/recursos/imagenes/Llama_Blanca/Llama_blanca_idle.png"
+        self.player_sprite = arcade.Sprite(image_source, ESCALA_PERSONAJE)
+        #self.player_sprite = llama()
         self.player_sprite.center_x = (
             self.tile_map.tile_width * ESCALA_LOZA * JUGADOR_EMPIEZA_X
         )
         self.player_sprite.center_y = (
             self.tile_map.tile_height * ESCALA_LOZA * JUGADOR_EMPIEZA_Y
         )
-        self.scene.add_sprite(CAPA_NOMBRE_LLAMA, self.player_sprite)
+        self.scene.add_sprite("Player", self.player_sprite)
 
         #calcular fin de mapa
         self.end_of_map = self.tile_map.width * TAMAÑO_CUADRICULA_PIXEL
 
          # -- Enemies
-        enemies_layer = self.tile_map.object_lists[CAPA_NOMBRE_ENEMIGO]
-
-        for my_object in enemies_layer:
-            cartesian = self.tile_map.get_cartesian(
-                my_object.shape[0], my_object.shape[1]
-            )
-            enemy_type = my_object.properties["type"]
-            if enemy_type == "llama_marron":
-                enemy = LlamaEnemy()
-            elif enemy_type == "Soldado":
-                enemy = SoldadoEnemy()
-            else:
-                raise Exception(f"Unknown enemy type {enemy_type}.")
-            enemy.center_x = math.floor(
-                cartesian[0] * ESCALA_LOZA * self.tile_map.tile_width
-            )
-            enemy.center_y = math.floor(
-                (cartesian[1] + 1) * (self.tile_map.tile_height * ESCALA_LOZA)
-            )
-            self.scene.add_sprite(CAPA_NOMBRE_ENEMIGO, enemy)
+        #enemies_layer = self.tile_map.object_lists[CAPA_NOMBRE_ENEMIGO]
+#
+        #for my_object in enemies_layer:
+        #    cartesian = self.tile_map.get_cartesian(
+        #        my_object.shape[0], my_object.shape[1]
+        #    )
+        #    enemy_type = my_object.properties["type"]
+        #    if enemy_type == "llama_marron":
+        #        enemy = LlamaEnemy()
+        #    elif enemy_type == "Soldado":
+        #        enemy = SoldadoEnemy()
+        #    else:
+        #        raise Exception(f"Unknown enemy type {enemy_type}.")
+        #    enemy.center_x = math.floor(
+        #        cartesian[0] * ESCALA_LOZA * self.tile_map.tile_width
+        #    )
+        #    enemy.center_y = math.floor(
+        #        (cartesian[1] + 1) * (self.tile_map.tile_height * ESCALA_LOZA)
+        #    )
+        #    self.scene.add_sprite(CAPA_NOMBRE_ENEMIGO, enemy)
 
 
         self.physics_engine = arcade.PhysicsEnginePlatformer(
@@ -249,11 +249,11 @@ class MyGame(arcade.Window):
         self.camera = arcade.Camera(self.width, self.height)
 
         # monedas de prueba
-        #for x in range(128, 1250, 256):
-        #    coin = arcade.Sprite(":resources:images/items/coinGold.png", ESCALA_MONEDA)
-        #    coin.center_x = x
-        #    coin.center_y = 150
-        #    self.scene.add_sprite("Coins", coin)
+        for x in range(128, 1250, 256):
+            coin = arcade.Sprite(":resources:images/items/coinGold.png", ESCALA_MONEDA)
+            coin.center_x = x
+            coin.center_y = 150
+            self.scene.add_sprite("Coins", coin)
 
         # mecanicas del disparo
         self.can_shoot = True
@@ -358,18 +358,18 @@ class MyGame(arcade.Window):
         elif  self.player_sprite.change_x  > 0 and self.padonde_miro == MIRAR_IZQUIERDA:
             self.padonde_miro = MIRAR_DERECHA
 
-        # ver si le pegamos a alguna caja
-        coin_hit_list = arcade.check_for_collision_with_list(
-            self.player_sprite, self.scene["Cactus"]
-        )
-
-        # recorre cada caja que golpeamos (si lo hacemos) y las quita
-        for coin in coin_hit_list:
-            # Remove the coin
-            coin.remove_from_sprite_lists()
-            # Play a sound
-            arcade.play_sound(self.collect_coin_sound)
-        
+        ## ver si le pegamos a alguna caja
+        #coin_hit_list = arcade.check_for_collision_with_list(
+        #    self.player_sprite, self.scene["Cactus"]
+        #)
+#
+        ## recorre cada caja que golpeamos (si lo hacemos) y las quita
+        #for coin in coin_hit_list:
+        #    # Remove the coin
+        #    coin.remove_from_sprite_lists()
+        #    # Play a sound
+        #    arcade.play_sound(self.collect_coin_sound)
+        #
         # Coloca la camara
         self.centrar_camara_al_jugador()
 
